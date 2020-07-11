@@ -29,15 +29,14 @@ class BERT_BiLSTM_CRF(BertPreTrainedModel):
         self.hidden2tag = nn.Linear(out_dim, config.num_labels)
         self.crf = CRF(config.num_labels, batch_first=True)
 
-    def forward(self, input_ids, bbox, bbox_pos_id, bbox_num, tags, token_type_ids=None, input_mask=None):
-        emissions = self.tag_outputs(input_ids, token_type_ids, input_mask, bbox, bbox_pos_id, bbox_num)
+    def forward(self, input_ids, tags, token_type_ids=None, input_mask=None):
+        emissions = self.tag_outputs(input_ids, token_type_ids, input_mask)
         loss = -1 * self.crf(emissions, tags, mask=input_mask.byte())
 
         return loss
 
-    def tag_outputs(self, input_ids, token_type_ids=None, input_mask=None, bbox=None, bbox_pos_id=None, bbox_num=None):
-        outputs = self.bert(input_ids=input_ids, token_type_ids=token_type_ids, attention_mask=input_mask, bbox=bbox,
-                            bbox_pos_id=bbox_pos_id, bbox_num=bbox_num)
+    def tag_outputs(self, input_ids, token_type_ids=None, input_mask=None):
+        outputs = self.bert(input_ids=input_ids, token_type_ids=token_type_ids, attention_mask=input_mask)
 
         sequence_output = outputs[0]
 
@@ -49,8 +48,8 @@ class BERT_BiLSTM_CRF(BertPreTrainedModel):
 
         return emissions
 
-    def predict(self, input_ids, token_type_ids=None, input_mask=None, bbox=None, bbox_pos_id=None, bbox_num=None):
-        emissions = self.tag_outputs(input_ids, token_type_ids, input_mask, bbox, bbox_pos_id, bbox_num)
+    def predict(self, input_ids, token_type_ids=None, input_mask=None):
+        emissions = self.tag_outputs(input_ids, token_type_ids, input_mask)
         return self.crf.decode(emissions, input_mask.byte())
 
 
@@ -100,7 +99,7 @@ class LayoutLMEmbeddings(nn.Module):
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
 
     def forward(
-            self, input_ids, bbox, bbox_pos_id, bbox_num, token_type_ids=None, position_ids=None,
+            self, input_ids, token_type_ids=None, position_ids=None,
     ):
         seq_length = input_ids.size(1)
         if position_ids is None:
@@ -113,31 +112,11 @@ class LayoutLMEmbeddings(nn.Module):
 
         words_embeddings = self.word_embeddings(input_ids)
         position_embeddings = self.position_embeddings(position_ids)
-        position_relation_embeddings = self.position_relation_embeddings(bbox_pos_id)
-        box_number_embeddings = self.box_number_embeddings(bbox_num)
-        left_position_embeddings = self.x_position_embeddings(bbox[:, :, 0])
-        upper_position_embeddings = self.y_position_embeddings(bbox[:, :, 1])
-        right_position_embeddings = self.x_position_embeddings(bbox[:, :, 2])
-        lower_position_embeddings = self.y_position_embeddings(bbox[:, :, 3])
-        h_position_embeddings = self.h_position_embeddings(
-            bbox[:, :, 3] - bbox[:, :, 1]
-        )
-        w_position_embeddings = self.w_position_embeddings(
-            bbox[:, :, 2] - bbox[:, :, 0]
-        )
         token_type_embeddings = self.token_type_embeddings(token_type_ids)
 
         embeddings = (
                 words_embeddings
                 + position_embeddings
-                + position_relation_embeddings  # 文字在文本框中的相对位置
-                + box_number_embeddings  # 文本框中文字的数目
-                + left_position_embeddings
-                + upper_position_embeddings
-                + right_position_embeddings
-                + lower_position_embeddings
-                + h_position_embeddings
-                + w_position_embeddings
                 + token_type_embeddings
         )
         embeddings = self.LayerNorm(embeddings)
@@ -192,9 +171,6 @@ class LayoutLMModel(BertPreTrainedModel):
     def forward(
             self,
             input_ids,
-            bbox,
-            bbox_pos_id,
-            bbox_num,
             attention_mask=None,
             token_type_ids=None,
             position_ids=None,
@@ -249,7 +225,7 @@ class LayoutLMModel(BertPreTrainedModel):
             head_mask = [None] * self.config.num_hidden_layers
 
         embedding_output = self.embeddings(
-            input_ids, bbox, bbox_pos_id, bbox_num, position_ids=position_ids, token_type_ids=token_type_ids,
+            input_ids, position_ids=position_ids, token_type_ids=token_type_ids,
         )
         encoder_outputs = self.encoder(
             embedding_output, extended_attention_mask, head_mask=head_mask
