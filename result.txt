@@ -1,0 +1,63 @@
+processed 203363 tokens with 6709 phrases; found: 7238 phrases; correct: 5942.
+accuracy:  95.90%; precision:  82.09%; recall:  88.57%; FB1:  85.21
+ BillTitle: precision:  84.47%; recall:  92.35%; FB1:  88.24  586
+         Currency: precision:  96.23%; recall:  98.49%; FB1:  97.35  610
+        IssueDate: precision:  85.68%; recall:  96.98%; FB1:  90.98  1201
+ PayerAccountName: precision:  82.40%; recall:  85.19%; FB1:  83.77  642
+PayerAccountNumber: precision:  84.20%; recall:  90.78%; FB1:  87.37  690
+       PayerOrgan: precision:  67.10%; recall:  69.49%; FB1:  68.28  611
+ReceiverAccountName: precision:  74.21%; recall:  78.90%; FB1:  76.48  504
+ReceiverAccountNumber: precision:  78.95%; recall:  83.33%; FB1:  81.08  513
+    ReceiverOrgan: precision:  60.82%; recall:  79.02%; FB1:  68.73  638
+      TotalAmount: precision:  86.83%; recall:  90.06%; FB1:  88.41  668
+   TotalAmountCap: precision:  98.09%; recall:  98.95%; FB1:  98.52  575
+07/05/2020 11:19:27 - INFO - __main__ -   ----------the best f1 is 0.8520828852082885---------
+
+processed 203363 tokens with 6709 phrases; found: 7000 phrases; correct: 6341.
+accuracy:  97.46%; precision:  90.59%; recall:  94.51%; FB1:  92.51
+        BillTitle: precision:  93.38%; recall:  97.39%; FB1:  95.34  559
+         Currency: precision:  96.42%; recall:  99.33%; FB1:  97.85  614
+        IssueDate: precision:  96.96%; recall:  99.25%; FB1:  98.09  1086
+ PayerAccountName: precision:  89.11%; recall:  93.56%; FB1:  91.28  652
+PayerAccountNumber: precision:  92.48%; recall:  96.09%; FB1:  94.25  665
+       PayerOrgan: precision:  80.12%; recall:  88.14%; FB1:  83.94  649
+ReceiverAccountName: precision:  81.93%; recall:  86.08%; FB1:  83.95  498
+ReceiverAccountNumber: precision:  87.55%; recall:  92.59%; FB1:  90.00  514
+    ReceiverOrgan: precision:  78.33%; recall:  86.15%; FB1:  82.06  540
+      TotalAmount: precision:  94.14%; recall:  94.88%; FB1:  94.51  649
+   TotalAmountCap: precision:  98.61%; recall:  99.30%; FB1:  98.95  574
+07/05/2020 13:14:18 - INFO - __main__ -   ----------the best f1 is 0.925085710117441---------
+
+cessed 203363 tokens with 6709 phrases; found: 6949 phrases; correct: 6384.
+accuracy:  97.54%; precision:  91.87%; recall:  95.16%; FB1:  93.48
+        BillTitle: precision:  95.68%; recall:  99.07%; FB1:  97.34  555
+         Currency: precision:  97.37%; recall:  99.50%; FB1:  98.42  609
+        IssueDate: precision:  97.50%; recall:  99.34%; FB1:  98.41  1081
+ PayerAccountName: precision:  90.82%; recall:  94.04%; FB1:  92.41  643
+PayerAccountNumber: precision:  92.30%; recall:  95.47%; FB1:  93.86  662
+       PayerOrgan: precision:  81.27%; recall:  88.98%; FB1:  84.95  646
+ReceiverAccountName: precision:  84.80%; recall:  89.45%; FB1:  87.06  500
+ReceiverAccountNumber: precision:  87.96%; recall:  93.21%; FB1:  90.51  515
+    ReceiverOrgan: precision:  82.31%; recall:  87.17%; FB1:  84.67  520
+      TotalAmount: precision:  95.50%; recall:  95.50%; FB1:  95.50  644
+   TotalAmountCap: precision:  98.61%; recall:  99.30%; FB1:  98.95  574
+07/05/2020 15:49:35 - INFO - __main__ -   ----------the best f1 is 0.9348367257285107---------
+
+processed 203363 tokens with 6709 phrases; found: 6982 phrases; correct: 6448.
+accuracy:  97.55%; precision:  92.35%; recall:  96.11%; FB1:  94.19
+        BillTitle: precision:  96.20%; recall:  99.25%; FB1:  97.70  553
+         Currency: precision:  98.50%; recall:  99.33%; FB1:  98.91  601
+        IssueDate: precision:  96.26%; recall:  99.43%; FB1:  97.82  1096
+ PayerAccountName: precision:  92.91%; recall:  95.01%; FB1:  93.95  635
+PayerAccountNumber: precision:  93.69%; recall:  95.16%; FB1:  94.42  650
+       PayerOrgan: precision:  81.71%; recall:  90.85%; FB1:  86.04  656
+ReceiverAccountName: precision:  86.74%; recall:  93.88%; FB1:  90.17  513
+ReceiverAccountNumber: precision:  90.04%; recall:  94.86%; FB1:  92.38  512
+    ReceiverOrgan: precision:  80.43%; recall:  90.43%; FB1:  85.14  552
+      TotalAmount: precision:  96.42%; recall:  96.12%; FB1:  96.27  642
+   TotalAmountCap: precision:  98.78%; recall:  99.12%; FB1:  98.95  572
+07/05/2020 18:38:47 - INFO - __main__ -   ----------the best f1 is 0.9419326564896646---------
+
+
+
+
