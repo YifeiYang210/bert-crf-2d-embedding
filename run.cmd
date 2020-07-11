@@ -1,2 +1,2 @@
-python ./ner.py --train_file ./data/train.txt --eval_file ./data/dev.txt --test_file ./data/test.txt --model_name_or_path bert --model_name_or_path ./my_model/14epoch/ --output_dir ./output/ --max_seq_length 512 --num_train_epochs 8 --train_batch_size 4 --seed 1 --do_test True --need_birnn True --rnn_dim 128
+python ./ner.py --train_file ./data/train.txt --eval_file ./data/dev.txt --test_file ./data/test.txt --model_name_or_path bert --model_name_or_path ./my_model/bert-base-chinese/ --output_dir ./output/ --max_seq_length 512 --num_train_epochs 20 --train_batch_size 4 --seed 1 --do_train True --do_eval True --do_test True --need_birnn True --rnn_dim 128
 @pause
